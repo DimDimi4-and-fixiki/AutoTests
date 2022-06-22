@@ -49,7 +49,13 @@ def read_file(file_name, root=get_root(), encoding='cp1251', usecols=None, dtype
     elif file_name.endswith('.f'):
         if verbose:
             logger.debug('Loaded ' + file_name)
-            return pd.read_feather(root + file_name)
+        return pd.read_feather(root + file_name)
+
+    elif file_name.endswith('.parquet'):
+        if verbose:
+            logger.debug('Loaded ' + file_name)
+        return pd.read_parquet(root + file_name)
+
     else:
         file_name = file_name + '.csv'
         df = pd.read_csv(root + file_name, encoding=encoding, dtype=dtype, sep=sep,
