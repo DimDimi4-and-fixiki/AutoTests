@@ -16,6 +16,7 @@ initial_df = pd.read_csv(initial_file)
 
 
 def log_comparing_error(file_extension: AnyStr):
+    # Method for quick logging if DataFrame.compare() raised an Exception
     logger.error(f'Error while comparing initial DataFrame with DataFrame from {file_extension} file')
 
 
@@ -26,6 +27,20 @@ def test_hdf_input():
     hdf_df: pd.DataFrame = pd.read_hdf(file_path, key='df')
     try:
         diff_df = hdf_df.compare(initial_df)
+    except ValueError:
+        log_comparing_error(file_extension)
+        assert False
+
+    assert diff_df.empty
+
+
+def test_parquet_input():
+    file_extension = 'Parquet'
+    file_path = os.path.join(root, 'files/Business Sales Transaction Test.parquet')
+
+    parquet_df: pd.DataFrame = pd.read_parquet(file_path)
+    try:
+        diff_df = parquet_df.compare(initial_df)
     except ValueError:
         log_comparing_error(file_extension)
         assert False
