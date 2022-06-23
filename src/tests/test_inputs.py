@@ -1,11 +1,9 @@
 import os.path
 
 import pandas as pd
-import pytest
 from loguru import logger
-from typing import AnyStr
-from utilities.reading_tools import get_root
-import sys
+
+from src.utilities.reading_tools import get_root
 
 root = get_root()
 
@@ -15,7 +13,7 @@ logger.opt(colors=True).info(f'Reading initial DataFrom from <green>{initial_fil
 initial_df = pd.read_csv(initial_file)
 
 
-def log_comparing_error(file_extension: AnyStr):
+def log_comparing_error(file_extension: str):
     # Method for quick logging if DataFrame.compare() raised an Exception
     logger.error(f'Error while comparing initial DataFrame with DataFrame from {file_extension} file')
 

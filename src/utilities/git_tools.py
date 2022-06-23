@@ -1,5 +1,6 @@
-import git
 from typing import AnyStr
+
+import git
 
 
 def get_git_signature(path: AnyStr = None):

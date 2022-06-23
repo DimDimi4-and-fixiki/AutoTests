@@ -1,6 +1,7 @@
-files/
+src/files/
 venv/
-files/
-tests/.pytest_cache
-utilities/__pycache__/
+src/files/
+src/tests/.pytest_cache
+src/utilities/__pycache__/
 .idea/
+/.mypy_cache/
